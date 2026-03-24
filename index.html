@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tourist Attractions Guide</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Tourist Attractions Guide</h1>
+      <p class="subtitle">Created by Arish Abrantes</p>
+    </div>
+    <div class="header-actions">
+      <button id="toggleListBtn">Toggle List</button>
+      <button id="refreshBtn">Refresh Markers</button>
+      <span id="locationCount">Loading locations...</span>
+    </div>
+  </header>
+
+  <main>
+    <aside id="locationList" class="collapsed">
+      <h3>Locations</h3>
+      <div id="locationsContainer">
+        <p class="no-locations">Loading...</p>
+      </div>
+    </aside>
+    <div id="map"></div>
+  </main>
+
+  <form id="pinForm" class="hidden">
+    <h3 id="formHeading">Add New Location</h3>
+    <input type="hidden" id="recordId">
+    <input type="hidden" id="lat">
+    <input type="hidden" id="lng">
+
+    <div class="selected-coords" id="selectedCoords">No coordinates selected yet.</div>
+
+    <div class="form-group">
+      <label for="name">Location Name</label>
+      <input type="text" id="name" placeholder="Location Name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" id="description" placeholder="Short description">
+    </div>
+
+    <div class="form-group">
+      <label for="photoUrl">Photo URLs (add multiple)</label>
+      <div class="photo-input-group">
+        <input type="url" id="photoUrl" placeholder="https://example.com/photo.jpg">
+        <button type="button" id="addPhotoBtn">Add</button>
+      </div>
+      <div id="photoList" class="photo-list"></div>
+    </div>
+
+    <div class="form-group">
+      <label for="rating">Rating (1-5)</label>
+      <select id="rating">
+        <option value="">No rating</option>
+        <option value="5">5 - Excellent</option>
+        <option value="4">4 - Very Good</option>
+        <option value="3">3 - Good</option>
+        <option value="2">2 - Fair</option>
+        <option value="1">1 - Poor</option>
+      </select>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-save" id="saveBtn">Save</button>
+      <button type="button" id="cancelBtn" class="btn-cancel">Cancel</button>
+    </div>
+  </form>
+
+  <div id="statusBar">Ready.</div>
+
+  <div id="imageModal" class="modal hidden">
+    <span class="modal-close">&times;</span>
+    <span class="modal-prev" id="modalPrev">&#10094;</span>
+    <img class="modal-content" id="modalImage">
+    <span class="modal-next" id="modalNext">&#10095;</span>
+    <div class="modal-counter" id="modalCounter"></div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</body>
+</html>
